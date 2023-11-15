@@ -8,15 +8,17 @@ import 'react-date-range/dist/theme/default.css';
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 
 
 function Header() {
-    const [destination, setDestination] = useState("");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [destination, setDestination] = useState(searchParams.get("destination") || "");
     const [isOpenOption, setIsOpenOption] = useState(false);
     const [options, setOptions] = useState({
-        adult: 1,
-        children: 0,
-        room: 1,
+        adult: (JSON.parse(searchParams.get("options"))?.adult) || 1,
+        children: (JSON.parse(searchParams.get("options"))?.children) || 0,
+        room: (JSON.parse(searchParams.get("options"))?.room) || 1,
     });
     const [isOpenDate, setIsOpenDate] = useState(false);
     const [selectionDate, setSelectionDate] = useState([{
@@ -24,13 +26,26 @@ function Header() {
         endDate: new Date(),
         key: 'selection',
     }]);
+    const navigate = useNavigate();
 
     const handleOptions = (type, operation) => {
         setOptions({
             ...options,
             [type]: operation === "inc" ? options[type] + 1 : options[type] - 1,
         })
+    }
 
+    const encodedParams = createSearchParams({
+        destination,
+        selectionDate: JSON.stringify(selectionDate),
+        options: JSON.stringify(options),
+    })
+
+    const handleSearch = () => {
+        navigate({
+            pathname: '/hotels',
+            search: encodedParams.toString(),
+        })
     }
 
     return (
@@ -70,7 +85,7 @@ function Header() {
                     <span className="separator"></span>
                 </div>
                 <div className="headerSearchItem">
-                    <button className="headerSearchBtn">
+                    <button className="headerSearchBtn" onClick={handleSearch}>
                         <HiSearch className="headerIcon" />
                     </button>
                 </div>
