@@ -1,10 +1,9 @@
-import { Link, useSearchParams } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch'
+import { Link } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import { useHotels } from '../context/HotelsProvider';
 
 function Hotels() {
-    const { isLoading, data } = useHotels();
+    const { isLoading, data, selectedHotel } = useHotels();
     if (isLoading) return <Loader />
     return (
         <div>
@@ -12,8 +11,11 @@ function Hotels() {
             <div className='searchList'>
                 {data.map((item) => {
                     return (
-                        <Link key={item.name} to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}>
-                            <div className='searchItem'>
+                        <Link
+                            key={item.name}
+                            to={`/hotels/${item.id}?lat=${item.latitude}&lng=${item.longitude}`}
+                        >
+                            <div className={`searchItem ${selectedHotel?.id === item.id ? "current-hotel" : ""}`}>
                                 <img src={item.picture_url.url} alt={item.name} />
                                 <div className='searchItemDesc'>
                                     <p className="location">{item.smart_location}</p>

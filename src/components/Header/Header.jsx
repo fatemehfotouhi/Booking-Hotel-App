@@ -47,9 +47,13 @@ function Header() {
             search: encodedParams.toString(),
         })
     }
+    const handleBookmarks = () => {
+        navigate('/bookmarks')
+    }
 
     return (
         <div className='header'>
+            <button className="bookmarkBtn" onClick={handleBookmarks}>Bookmarks</button>
             <div className='headerSearch'>
                 <div className="headerSearchItem">
                     <IoIosPin className="headerIcon locationIcon" />

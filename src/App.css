@@ -1,5 +1,6 @@
 @import url("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css");
 
+/* Header */
 .header {
   display: flex;
   align-items: center;
@@ -35,7 +36,6 @@
   border: none;
   padding: 0.7rem 0.5rem;
   font-size: 1rem;
-  outline: none;
 }
 
 .headerIcon {
@@ -101,6 +101,17 @@
   top: 2rem;
 }
 
+.bookmarkBtn {
+  margin-right: 1rem;
+  color: var(--white);
+  background-color: var(--primary-600);
+  padding: .8rem 1rem;
+  border-radius: .5rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Location List */
 .locationsContainer {
   margin: 0 auto;
 }
@@ -133,7 +144,8 @@
   font-weight: 400;
 }
 
-.AppLayout {
+.appLayout,
+.bookmarkLayout {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
@@ -148,13 +160,13 @@
 .searchItem {
   display: flex;
   column-gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .searchItem img {
   width: 6rem;
   height: 6rem;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
+  border-radius: .8rem;
 }
 
 .searchItem .searchItemDesc p {
@@ -190,6 +202,118 @@
 
 .map {
   height: 100%;
+}
+
+.getLocation {
+  background-color: var(--primary-600);
+  color: var(--white);
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 10px var(--primary-600);
+  font-weight: bold;
+}
+
+.current-hotel {
+  border: 3px solid var(--primary-700);
+  border-radius: 1rem;
+}
+
+
+/* Add New Bookmark */
+.form {
+  margin-top: 1rem;
+}
+
+.formControl {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: .8rem;
+  row-gap: .3rem;
+}
+
+.formControl>label {
+  font-weight: bold;
+  color: var(--text-500);
+}
+
+.formControl>input {
+  border: 1px solid var(--text-400);
+  border-radius: .5rem;
+  padding: .8rem .6rem;
+  font-size: 1rem;
+}
+
+.formAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.backBtn {
+  border: 1px solid var(--text-400);
+  color: var(--text-700);
+  padding: .6rem 1.1rem;
+  border-radius: .5rem;
+  font-weight: bold;
+}
+
+.addBtn {
+  background-color: var(--primary-600);
+  color: var(--white);
+  padding: .6rem 1.1rem;
+  border-radius: .5rem;
+  font-weight: bold;
+}
+
+.addBtn:disabled {
+  background-color: #d9dbdf;
+}
+
+/* Bookmarks List */
+.bookmarksList {
+  margin-top: 1rem;
+}
+
+.bookmarkItem {
+  border: 1px solid var(--text-400);
+  padding: .8rem 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.bookmarkItem>div>* {
+  margin-right: .5rem;
+
+}
+
+.deleteIcon {
+  color: var(--rose-500);
+  font-size: 1.25rem;
+}
+
+.selectedBookmark {
+  background-color: var(--text-100);
+  border: 2px solid var(--primary-600);
+}
+
+/* selected One Bookmark */
+
+.singleBookmark {
+  border: 1px solid var(--text-400);
+  padding: .8rem 1rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
 
 
