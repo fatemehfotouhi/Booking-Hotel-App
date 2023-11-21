@@ -6,7 +6,13 @@ import ReactCountryFlag from "react-country-flag"
 
 
 function BookmarksList() {
-    const { bookmarks, isLoading, selectedBookmark } = useBookmark();
+    const { bookmarks, isLoading, selectedBookmark, deleteBookmark } = useBookmark();
+    const handleDeleteBookmark = async (e, id) => {
+        e.preventDefault();
+        await deleteBookmark(id)
+    }
+
+    if (!bookmarks.length) return <strong>There is no bookmark!!</strong>
     if (isLoading) return <Loader />
     return (
         <div>
@@ -24,7 +30,7 @@ function BookmarksList() {
                                     <strong className="city">{b.cityName}</strong>
                                     <span className="country">{b.country}</span>
                                 </div>
-                                <button>
+                                <button onClick={(e) => handleDeleteBookmark(e, b.id)}>
                                     <HiTrash className="deleteIcon" />
                                 </button>
                             </div>

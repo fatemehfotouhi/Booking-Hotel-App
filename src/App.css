@@ -229,10 +229,20 @@
 }
 
 .formControl {
+  margin-bottom: .8rem;
+  position: relative;
   display: flex;
   flex-direction: column;
-  margin-bottom: .8rem;
-  row-gap: .3rem;
+}
+
+.formControl>input {
+  margin-top: .8rem;
+}
+
+.flag {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
 }
 
 .formControl>label {

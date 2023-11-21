@@ -6,11 +6,11 @@ import { useParams } from 'react-router-dom';
 
 function SingleBookmark() {
     const { id } = useParams();
-    const { selectedBookmark, isLoadingSelectedBookmark, getSelectedBookmark } = useBookmark();
+    const { selectedBookmark, isLoading, getSelectedBookmark } = useBookmark();
     useEffect(() => {
         getSelectedBookmark(id)
     }, [id])
-    if (isLoadingSelectedBookmark || !selectedBookmark) return <Loader />
+    if (isLoading || !selectedBookmark) return <Loader />
     return (
         <div>
             <h2>{selectedBookmark.cityName}</h2>

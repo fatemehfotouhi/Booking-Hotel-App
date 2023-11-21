@@ -1325,58 +1325,22 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Tehran",
+      "cityName": "Ḩasanabad",
       "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
-      "latitude": "35.69986533820107",
-      "longitude": "51.337843511309714",
-      "host_location": "Tehran Iran (Islamic Republic of)",
+      "latitude": "35.18948669083368",
+      "longitude": "51.13613782981332",
+      "host_location": "ḨasanabadIran (Islamic Republic of)",
       "id": 1
     },
     {
-      "cityName": "Seh Qal‘eh",
+      "cityName": "Khenejin",
       "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
-      "latitude": "32.90215392937317",
-      "longitude": "58.02717534047584",
-      "host_location": "Seh Qal‘eh Iran (Islamic Republic of)",
-      "id": 2
-    },
-    {
-      "cityName": "Mohkhar",
-      "country": "India",
-      "countryCode": "IN",
-      "latitude": "21.923728848119733",
-      "longitude": "78.61202155746045",
-      "host_location": "Mohkhar India",
+      "latitude": "34.704047881640115",
+      "longitude": "49.58414058358619",
+      "host_location": "KhenejinIran (Islamic Republic of)",
       "id": 3
-    },
-    {
-      "cityName": "Madi",
-      "country": "Nepal",
-      "countryCode": "NP",
-      "latitude": "28.289365994540116",
-      "longitude": "84.10298234197883",
-      "host_location": "Madi Nepal",
-      "id": 4
-    },
-    {
-      "cityName": "Multan",
-      "country": "Pakistan",
-      "countryCode": "PK",
-      "latitude": "30.052744953312896",
-      "longitude": "71.31794146640686",
-      "host_location": "Multan Pakistan",
-      "id": 5
-    },
-    {
-      "cityName": "Al Mayadin",
-      "country": "Syrian Arab Republic (the)",
-      "countryCode": "SY",
-      "latitude": "34.97967647219105",
-      "longitude": "40.295595903334956",
-      "host_location": "Al Mayadin Syrian Arab Republic (the)",
-      "id": 6
     }
   ]
 }
