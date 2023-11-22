@@ -1,27 +1,70 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import useFetch from "../../hooks/useFetch";
+import { createContext, useContext, useEffect, useReducer, useState } from "react"
 import toast from "react-hot-toast";
 import axios from "axios";
+
 
 const BookmarkContext = createContext();
 const BASE_URL = "http://localhost:5000";
 
+const initialState = {
+    isLoading: false,
+    bookmarks: [],
+    selectedBookmark: null,
+    error: null,
+}
+
+function bookReducer(state, action) {
+    switch (action.type) {
+        case "loading": return {
+            ...state,
+            isLoading: true,
+        }
+        case "bookmarks/loaded": return {
+            ...state,
+            isLoading: false,
+            bookmarks: action.payload,
+        }
+        case "bookmark/loaded": return {
+            ...state,
+            isLoading: false,
+            selectedBookmark: action.payload,
+        }
+        case "bookmark/created": return {
+            ...state,
+            isLoading: false,
+            selectedBookmark: action.payload,
+            bookmarks: [...state.bookmarks, action.payload],
+        }
+        case "bookmark/deleted": return {
+            ...state,
+            isLoading: false,
+            bookmarks: state.bookmarks.filter((b) => b.id !== action.payload),
+            selectedBookmark: null,
+        }
+        case "rejected": return {
+            ...state,
+            isLoading: false,
+            error: action.payload,
+        }
+        default: throw new Error("Unknown action")
+
+    }
+
+}
+
 function BookmarkProvider({ children }) {
-    const [selectedBookmark, setSelectedBookmark] = useState(null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [bookmarks, setBookmarks] = useState([]);
+
+    const [{ isLoading, bookmarks, selectedBookmark, error }, dispatch] = useReducer(bookReducer, initialState);
 
     useEffect(() => {
         async function getBookmarks() {
             try {
-                setIsLoading(true);
+                dispatch({ type: "loading" })
                 const { data } = await axios.get(`${BASE_URL}/bookmarks`);
-                setBookmarks(data);
+                dispatch({ type: "bookmarks/loaded", payload: data })
             } catch (err) {
                 toast.error(err.message);
-            }
-            finally {
-                setIsLoading(false);
+                dispatch({ type: "rejected", payload: err.message })
             }
         }
         getBookmarks();
@@ -29,38 +72,33 @@ function BookmarkProvider({ children }) {
 
     async function getSelectedBookmark(id) {
         try {
-            setIsLoading(true);
+            dispatch({ type: "loading" })
             const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
-            setSelectedBookmark(data);
+            dispatch({ type: "bookmark/loaded", payload: data })
         } catch (err) {
             toast.error(err.message);
-        }
-        finally {
-            setIsLoading(false);
+            dispatch({ type: "rejected", payload: err.message })
         }
     }
 
     async function createNewBookmark(newBookmark) {
         try {
-            setIsLoading(true);
+            dispatch({ type: "loading" })
             const { data } = await axios.post(`${BASE_URL}/bookmarks`, newBookmark);
-            setSelectedBookmark(data);
-            setBookmarks((prev) => [...prev, data]);
+            dispatch({ type: "bookmark/created", payload: data })
         } catch (err) {
             toast.error(err);
-        } finally {
-            setIsLoading(false);
+            dispatch({ type: "rejected", payload: err.message })
         }
     }
     async function deleteBookmark(id) {
         try {
-            setIsLoading(true);
+            dispatch({ type: "loading" })
             await axios.delete(`${BASE_URL}/bookmarks/${id}`);
-            setBookmarks(prev => prev.filter((b) => b.id !== id));
+            dispatch({ type: "bookmark/deleted", payload: id })
         } catch (err) {
-            toast.error(err)
-        } finally {
-            setIsLoading(false);
+            toast.error(err);
+            dispatch({ type: "rejected", payload: err.message });
         }
     }
 
