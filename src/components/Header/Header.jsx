@@ -1,7 +1,7 @@
 import { HiSearch } from "react-icons/hi";
 import { IoIosPin } from "react-icons/io";
 import { BiSolidCalendarAlt } from "react-icons/bi";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import { FiLogIn, FiMinus, FiPlus } from "react-icons/fi";
 import { useRef, useState } from "react";
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -9,6 +9,8 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useAuth } from "../context/AuthProvider";
+import Profile from "../Profile/Profile";
 
 
 function Header() {
@@ -26,6 +28,7 @@ function Header() {
         endDate: new Date(),
         key: 'selection',
     }]);
+    const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
     const handleOptions = (type, operation) => {
@@ -48,12 +51,25 @@ function Header() {
         })
     }
     const handleBookmarks = () => {
-        navigate('/bookmarks')
+        navigate('/bookmarks');
+    }
+    const handleLoginForm = () => {
+        navigate("/login");
     }
 
     return (
         <div className='header'>
-            <button className="bookmarkBtn" onClick={handleBookmarks}>Bookmarks</button>
+            {isAuthenticated ?
+                <Profile />
+                :
+                (<button
+                    className="primaryBtn loginBtn"
+                    onClick={handleLoginForm}
+                >
+                    <FiLogIn style={{ width: '1.25rem', height: '1.25rem' }} />
+                    &nbsp;Login
+                </button>)
+            }
             <div className='headerSearch'>
                 <div className="headerSearchItem">
                     <IoIosPin className="headerIcon locationIcon" />
@@ -91,6 +107,14 @@ function Header() {
                 <div className="headerSearchItem">
                     <button className="headerSearchBtn" onClick={handleSearch}>
                         <HiSearch className="headerIcon" />
+                    </button>
+                </div>
+                <div className="headerSearchItem">
+                    <button
+                        className="bookmarkBtn"
+                        onClick={handleBookmarks}
+                    >
+                        Bookmarks
                     </button>
                 </div>
             </div>

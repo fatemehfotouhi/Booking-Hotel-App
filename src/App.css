@@ -13,10 +13,10 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 1rem;
-  border: 1px solid #ebe9e9;
+  border: 1px solid var(--text-300);
   padding: 1rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 950px;
 }
 
 .headerSearchItem {
@@ -53,7 +53,7 @@
 
 .headerSearchBtn {
   background-color: var(--primary-600);
-  padding: .6rem;
+  padding: .8rem 1rem;
   border-radius: 1rem;
   color: var(--white);
   display: flex;
@@ -99,16 +99,69 @@
 .calendar {
   position: absolute;
   top: 2rem;
+  z-index: 10;
 }
 
-.bookmarkBtn {
-  margin-right: 1rem;
+.primaryBtn {
   color: var(--white);
   background-color: var(--primary-600);
   padding: .8rem 1rem;
   border-radius: .5rem;
   font-weight: bold;
   font-size: 1rem;
+}
+
+.bookmarkBtn {
+  margin-left: 1rem;
+  color: var(--primary-600);
+  border: 2px solid var(--primary-600);
+  padding: .8rem 1rem;
+  border-radius: .8rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.loginBtn {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.profileIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--text-300);
+  margin-left: 1rem;
+}
+
+.profileMenuContainer {
+  background-color: var(--white);
+  box-shadow: 0 0 10px #efefef;
+  border-radius: 1rem;
+  border: 1px solid var(--text-100);
+  position: absolute;
+  top: 2.5rem;
+  width: 10rem;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.profileMenuItem {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.profileMenuItem:hover {
+  background-color: var(--text-300);
+}
+
+.profileMenuItem>button {
+  font-size: 1rem;
+}
+
+
+.guestOptionItem:not(:last-child) {
+  margin-bottom: .7rem;
 }
 
 /* Location List */
@@ -188,7 +241,7 @@
 }
 
 .sidebar {
-  width: 35%;
+  width: 45%;
   overflow-y: scroll;
   padding-right: 1rem;
 }
@@ -222,6 +275,17 @@
   border-radius: 1rem;
 }
 
+/* Selected Hotel */
+.singleHotel {
+  display: flex;
+  flex-direction: column;
+  row-gap: .8rem;
+}
+
+.singleHotelImage {
+  border-radius: .8rem;
+  height: 20rem;
+}
 
 /* Add New Bookmark */
 .form {
@@ -326,14 +390,102 @@
   margin-top: 1rem;
 }
 
+/* Login page */
+.loginForm {
+  border: 1px solid var(--text-300);
+  border-radius: 1rem;
+  max-width: 25rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+.loginForm>form>button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.loginForm>form>button:disabled {
+  background-color: #d9dbdf;
+}
+
+.error {
+  color: var(--rose-500);
+  font-size: small;
+}
 
 
 
 
+@media only screen and (max-width: 1074px) {
+  .headerSearch {
+    flex-direction: column;
+    border-radius: none;
+    padding: none;
+    row-gap: 1rem;
+  }
 
+  .headerSearchItem:nth-child(4),
+  .headerSearchBtn,
+  .headerSearchItem:nth-child(5),
+  .bookmarkBtn {
+    width: 100%;
+    border-radius: .8rem;
+  }
 
+  .headerSearchItem:nth-child(-n+3) {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--text-300);
+  }
 
+  .headerSearchInput {
+    padding: 0;
+  }
 
+  .separator {
+    display: none;
+  }
+
+  .calendar {
+    width: 100%;
+    top: 3rem;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .loginBtn {
+    margin-bottom: 1rem;
+  }
+
+  .bookmarkBtn {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+
+  .appLayout,
+  .bookmarkLayout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .map {
+    height: calc(100vh);
+  }
+
+  .mapContainer {
+    margin-top: 1rem;
+  }
+
+  .sidebar {
+    width: 100%;
+    overflow-y: hidden;
+  }
+}
 
 @media only screen and (max-width: 720px) {
   .locationList {

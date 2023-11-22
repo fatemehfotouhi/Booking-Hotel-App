@@ -12,10 +12,14 @@ function SingleHotel() {
 
     if (isLoadingSingleHotel || !selectedHotel) return <Loader />
     return (
-        <div>
+        <div className='singleHotel'>
             <h4>{selectedHotel.name}</h4>
             <span>{selectedHotel.number_of_reviews} reviews &#128900; {selectedHotel.city}, {selectedHotel.country}</span>
-            <img src={selectedHotel.picture_url.url} alt={selectedHotel.name} />
+            <img
+                className='singleHotelImage'
+                src={selectedHotel.picture_url.url}
+                alt={selectedHotel.name}
+            />
 
         </div>
     )

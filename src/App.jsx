@@ -12,27 +12,37 @@ import AddNewBookmark from './components/AddNewBookmark/AddNewBookmark';
 import BookmarksList from './components/BookmarksList/BookmarksList';
 import BookmarkProvider from './components/context/BookmarkProvider';
 import SingleBookmark from './components/SingleBookmark.jsx/SingleBookmark';
+import Login from './components/Login/Login';
+import AuthProvider from './components/context/AuthProvider';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 
 function App() {
   return (
     <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "2rem" }}>
-      <Toaster />
       <HotelsProvider>
         <BookmarkProvider>
-          <Header />
-          <Routes>
-            <Route path='/' element={<LocationList />} />
-            <Route path='/hotels' element={<AppLayout />}>
-              <Route index element={<Hotels />} />
-              <Route path=':id' element={<SingleHotel />} />
-            </Route>
-            <Route path='/bookmarks' element={<BookmarkLayout />} >
-              <Route index element={<BookmarksList />}></Route>
-              <Route path=':id' element={<SingleBookmark />}></Route>
-              <Route path='add' element={<AddNewBookmark />}></Route>
-            </Route>
-          </Routes>
+          <AuthProvider>
+            <Toaster />
+            <Header />
+            <Routes>
+              <Route path='/' element={<LocationList />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/hotels' element={<AppLayout />}>
+                <Route index element={<Hotels />} />
+                <Route path=':id' element={<SingleHotel />} />
+              </Route>
+              <Route path='/bookmarks' element={
+                <ProtectedRoute>
+                  <BookmarkLayout />
+                </ProtectedRoute>
+              } >
+                <Route index element={<BookmarksList />}></Route>
+                <Route path=':id' element={<SingleBookmark />}></Route>
+                <Route path='add' element={<AddNewBookmark />}></Route>
+              </Route>
+            </Routes>
+          </AuthProvider>
         </BookmarkProvider>
       </HotelsProvider>
     </div>

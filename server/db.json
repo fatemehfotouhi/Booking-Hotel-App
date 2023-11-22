@@ -1325,24 +1325,6 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Rugby",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "countryCode": "GB",
-      "latitude": "52.278789454173136",
-      "longitude": "-1.2918914434493824",
-      "host_location": "RugbyUnited Kingdom of Great Britain and Northern Ireland (the)",
-      "id": 1
-    },
-    {
-      "cityName": "London",
-      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
-      "countryCode": "GB",
-      "latitude": "51.51542759400641",
-      "longitude": "-0.09057629544115821",
-      "host_location": "LondonUnited Kingdom of Great Britain and Northern Ireland (the)",
-      "id": 2
-    },
-    {
       "cityName": "Bumahen",
       "country": "Iran (Islamic Republic of)",
       "countryCode": "IR",
@@ -1359,6 +1341,29 @@
       "longitude": "52.04949363736921",
       "host_location": "DamavandIran (Islamic Republic of)",
       "id": 4
+    },
+    {
+      "cityName": "Tehran",
+      "country": "Iran (Islamic Republic of)",
+      "countryCode": "IR",
+      "latitude": "35.72521703643481",
+      "longitude": "51.40228271484376",
+      "host_location": "TehranIran (Islamic Republic of)",
+      "id": 8
+    },
+    {
+      "cityName": "London",
+      "country": "United Kingdom of Great Britain and Northern Ireland (the)",
+      "countryCode": "GB",
+      "latitude": "51.52890895202452",
+      "longitude": "-0.09200069691021273",
+      "host_location": "LondonUnited Kingdom of Great Britain and Northern Ireland (the)",
+      "id": 9
     }
-  ]
+  ],
+  "login": {
+    "name": "Fatemeh",
+    "email": "fatemeh.fotouhi4@gmail.com",
+    "password": "123456789"
+  }
 }
