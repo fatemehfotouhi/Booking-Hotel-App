@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const HotelsContext = createContext();
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://booking-hotel-app-4vvx.vercel.app/";
 
 function HotelsProvider({ children }) {
     const [searchParams, setSearchParams] = useSearchParams();
