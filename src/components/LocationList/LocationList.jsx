@@ -2,7 +2,7 @@ import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
 
 function LocationList() {
-    const { data, isLoading } = useFetch("https://booking-hotel-app-4vvx.vercel.app//hotels", "");
+    const { data, isLoading } = useFetch("https://booking-hotel-app-4vvx.vercel.app/hotels", "");
     if (isLoading) return <Loader />
     return (
         <div className="locationsContainer">

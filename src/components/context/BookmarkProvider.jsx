@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 const BookmarkContext = createContext();
-const BASE_URL = "https://booking-hotel-app-4vvx.vercel.app/";
+const BASE_URL = "https://booking-hotel-app-4vvx.vercel.app";
 
 const initialState = {
     isLoading: false,

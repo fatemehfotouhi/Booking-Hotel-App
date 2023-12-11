@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import toast from "react-hot-toast";
-const BASE_URL = "https://booking-hotel-app-4vvx.vercel.app/";
+const BASE_URL = "https://booking-hotel-app-4vvx.vercel.app";
 
 const AuthContext = createContext();
 const initialState = {
